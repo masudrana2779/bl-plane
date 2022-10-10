@@ -1,5 +1,26 @@
 import { BlPlanWrap } from "./Home.styled";
 
+const data = [
+  {
+    packTitle: "Validity",
+  },
+  {
+    packTitle: "Internet",
+  },
+  {
+    packTitle: "4G Internet",
+  },
+  {
+    packTitle: "Minutes",
+  },
+  {
+    packTitle: "Bioscope",
+  },
+  {
+    packTitle: "SMS",
+  },
+];
+
 const HomeComponent = () => {
   return (
     <BlPlanWrap className="blPlanWrap">
@@ -7,37 +28,35 @@ const HomeComponent = () => {
         <h4>BL Plan</h4>
         <div className="row justify-content-center">
           <div className="col-md-8 col-sm-12 col-12">
-            {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(
-              (pack: any, k: number) => (
-                <div key={k} className="planContent">
-                  <div className="row">
-                    <div className="col-5">
-                      <h3>Validity</h3>
-                      <p>3 Days</p>
-                    </div>
-                    <div className="col-7">
-                      <div className="packItemWrap">
-                        {[1, 1, 1, 1, 1, 1, 1].map((item: any, i: number) => (
-                          <div className="packItem" key={i + k}>
-                            <input
-                              name="day"
-                              type="radio"
-                              id={`item_day_${k}${i}`}
-                            />
-                            <label
-                              htmlFor={`item_day_${k}${i}`}
-                              className="packData"
-                            >
-                              0
-                            </label>
-                          </div>
-                        ))}
-                      </div>
+            {data.map((pack: any, k: number) => (
+              <div key={k} className="planContent">
+                <div className="row">
+                  <div className="col-5">
+                    <h3>{pack.packTitle}</h3>
+                    <p>3 Days</p>
+                  </div>
+                  <div className="col-7">
+                    <div className="packItemWrap">
+                      {[1, 1, 1, 1, 1, 1, 1].map((item: any, i: number) => (
+                        <div className="packItem" key={i + k}>
+                          <input
+                            name="day"
+                            type="radio"
+                            id={`item_day_${k}${i}`}
+                          />
+                          <label
+                            htmlFor={`item_day_${k}${i}`}
+                            className="packData"
+                          >
+                            0
+                          </label>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
           <div className="Total">
             <div className="right-sidebar-container">
