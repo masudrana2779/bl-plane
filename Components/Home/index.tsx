@@ -5,9 +5,6 @@ const data = [
     packTitle: "Validity",
   },
   {
-    packTitle: "Internet",
-  },
-  {
     packTitle: "4G Internet",
   },
   {
