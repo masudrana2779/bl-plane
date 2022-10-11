@@ -28,7 +28,7 @@ const HomeComponent = () => {
   return (
     <BlPlanWrap className="blPlanWrap">
       <div className="container">
-        <h4>Banglalinnk Offer</h4>
+        <h4>Banglalink Offer</h4>
         <div className="row justify-content-center">
           <div className="col-md-8 col-sm-12 col-12">
             {data.map((dataItem: any, k: number) => (
