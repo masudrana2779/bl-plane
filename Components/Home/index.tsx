@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { BlPlanWrap } from "./Home.styled";
 
+const Validity = ["0", "1", "3", "7"];
+const Internet = ["0", "100 MB", "205 MB", "500 MB"];
+const Minutes = ["0", "10", "25"];
+const SMS = ["0", "50", "100"];
+
 const data = [
   {
     packTitle: "Validity",
-    pack: ["1", "3", "7"],
+    pack: ["0", "100 MB", "205 MB", "500 MB"],
   },
   {
-    packTitle: "Internet",
-    pack: ["0 MB", "205 MB", "500 MB"],
+    packTitle: "",
+    pack: ["0 MB", "100 MB", "205 MB", "500 MB"],
   },
   {
     packTitle: "Minutes",
@@ -21,17 +26,106 @@ const data = [
 ];
 
 const HomeComponent = () => {
-  const [validity, setValidity] = useState();
-  const [internet, setInternet] = useState();
-  const [minutes, setMinutes] = useState();
-  const [SMS, setSMS] = useState();
+  const [validity, setValidity] = useState(0);
+  const [internet, setInternet] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [SMS, setSMS] = useState(0);
+
+  const handleValidity = (e: any) => {
+    setValidity(e.target.value);
+  };
+  const handleInternet = (e: any) => {
+    setInternet(e.target.value);
+  };
+  const handleMinutes = (e: any) => {
+    setMinutes(e.target.value);
+  };
+
   return (
     <BlPlanWrap className="blPlanWrap">
       <div className="container">
-        <h4>Banglalink Offer</h4>
+        <h4>Banglalink Flexiplan</h4>
         <div className="row justify-content-center">
           <div className="col-md-8 col-sm-12 col-12">
-            {data.map((dataItem: any, k: number) => (
+            <div className="planContent">
+              <div className="row">
+                <div className="col-5">
+                  <h3>Validity</h3>
+                  <p>{validity} Days</p>
+                </div>
+                <div className="col-7">
+                  <div className="packItemWrap">
+                    {Validity.map((item: any, i: number) => (
+                      <div className="packItem" key={i}>
+                        <input
+                          name="Validity"
+                          type="radio"
+                          id={`item_${i}`}
+                          value={item}
+                          onChange={(e) => handleValidity(e)}
+                        />
+                        <label htmlFor={`item_${i}`} className="packData">
+                          {item}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="planContent">
+              <div className="row">
+                <div className="col-5">
+                  <h3>Internet</h3>
+                  <p>{internet}</p>
+                </div>
+                <div className="col-7">
+                  <div className="packItemWrap">
+                    {Internet.map((item: any, i: number) => (
+                      <div className="packItem" key={i}>
+                        <input
+                          name="Internet"
+                          type="radio"
+                          id={`Internet_${i}`}
+                          value={item}
+                          onChange={(e) => handleInternet(e)}
+                        />
+                        <label htmlFor={`Internet_${i}`} className="packData">
+                          {item}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="planContent">
+              <div className="row">
+                <div className="col-5">
+                  <h3>Minutes</h3>
+                  <p>{minutes}</p>
+                </div>
+                <div className="col-7">
+                  <div className="packItemWrap">
+                    {Minutes.map((item: any, i: number) => (
+                      <div className="packItem" key={i}>
+                        <input
+                          name="Minutes"
+                          type="radio"
+                          id={`Minutes_${i}`}
+                          value={item}
+                          onChange={(e) => handleMinutes(e)}
+                        />
+                        <label htmlFor={`Minutes_${i}`} className="packData">
+                          {item}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* {data.map((dataItem: any, k: number) => (
               <div key={k} className="planContent">
                 <div className="row">
                   <div className="col-5">
@@ -56,7 +150,7 @@ const HomeComponent = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
           <div className="Total">
             <div className="right-sidebar-container">
