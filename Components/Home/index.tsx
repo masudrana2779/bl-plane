@@ -47,10 +47,7 @@ const HomeComponent = () => {
                             type="radio"
                             id={`item_${k}${i}`}
                           />
-                          <label
-                            htmlFor={`item_${k}${i}`}
-                            className="packData"
-                          >
+                          <label htmlFor={`item_${k}${i}`} className="packData">
                             {item}
                           </label>
                         </div>
