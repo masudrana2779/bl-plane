@@ -12,6 +12,7 @@ export const BlPlanWrap = styled.div`
     background-color: #ff8126;
     color: #fff;
     font-weight: 700;
+    padding: 25px;
   }
   .planContent {
     padding: 12px 0 6px 0;
