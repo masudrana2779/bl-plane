@@ -27,10 +27,6 @@ const data = [
     packTitle: "",
     pack: ["0 MB", "100 MB", "205 MB", "500 MB"],
   },
-  {
-    packTitle: "Minutes",
-    pack: ["0", "10", "25"],
-  },
 ];
 
 const HomeComponent = () => {
