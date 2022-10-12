@@ -28,12 +28,11 @@ const HomeComponent = () => {
   const [validity, setValidity] = useState(1);
   const [internet, setInternet] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [isActive, setisActive] = useState(true);
+  const [isActive, setisActive] = useState(false);
   const [sms, setSMS] = useState(0);
 
   const handleValidity = (e: any) => {
     setValidity(e.target.value);
-    setisActive(false);
   };
   const handleInternet = (e: any) => {
     setInternet(e.target.value);
