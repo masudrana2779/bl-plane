@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { BlPlanWrap } from "./Home.styled";
 
-const Validity = ["1", "3", "7", "15", "30"];
+const Validity = [
+  { day: "1", isActive: true },
+  { day: "3", isActive: false },
+  { day: "7", isActive: false },
+  { day: "15", isActive: false },
+  { day: "30", isActive: false },
+];
 const Internet = [
   "0",
   "100MB",
@@ -18,15 +24,16 @@ const Internet = [
 const Minutes = ["0", "10", "25", "50", "100", "150", "200", "300", "350"];
 const SMS = ["0", "25", "50", "100", "200", "300"];
 
-
 const HomeComponent = () => {
   const [validity, setValidity] = useState(1);
   const [internet, setInternet] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const [isActive, setisActive] = useState(true);
   const [sms, setSMS] = useState(0);
 
   const handleValidity = (e: any) => {
     setValidity(e.target.value);
+    setisActive(true);
   };
   const handleInternet = (e: any) => {
     setInternet(e.target.value);
@@ -58,11 +65,12 @@ const HomeComponent = () => {
                           name="Validity"
                           type="radio"
                           id={`item_${i}`}
-                          value={item}
+                          value={item.day}
                           onChange={(e) => handleValidity(e)}
+                          checked={isActive ? true : false}
                         />
                         <label htmlFor={`item_${i}`} className="packData">
-                          {item}
+                          {item.day}
                         </label>
                       </div>
                     ))}
