@@ -29,7 +29,7 @@ const HomeComponent = () => {
   const [validity, setValidity] = useState(0);
   const [internet, setInternet] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [SMS, setSMS] = useState(0);
+  const [sms, setSMS] = useState(0);
 
   const handleValidity = (e: any) => {
     setValidity(e.target.value);
@@ -39,6 +39,9 @@ const HomeComponent = () => {
   };
   const handleMinutes = (e: any) => {
     setMinutes(e.target.value);
+  };
+  const handleSms = (e: any) => {
+    setSMS(e.target.value);
   };
 
   return (
@@ -117,6 +120,32 @@ const HomeComponent = () => {
                           onChange={(e) => handleMinutes(e)}
                         />
                         <label htmlFor={`Minutes_${i}`} className="packData">
+                          {item}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="planContent">
+              <div className="row">
+                <div className="col-5">
+                  <h3>SMS</h3>
+                  <p>{sms}</p>
+                </div>
+                <div className="col-7">
+                  <div className="packItemWrap">
+                    {SMS.map((item: any, i: number) => (
+                      <div className="packItem" key={i}>
+                        <input
+                          name="sms"
+                          type="radio"
+                          id={`sms_${i}`}
+                          value={item}
+                          onChange={(e) => handleSms(e)}
+                        />
+                        <label htmlFor={`sms_${i}`} className="packData">
                           {item}
                         </label>
                       </div>
