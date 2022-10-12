@@ -33,7 +33,7 @@ const HomeComponent = () => {
 
   const handleValidity = (e: any) => {
     setValidity(e.target.value);
-    setisActive(true);
+    setisActive(false);
   };
   const handleInternet = (e: any) => {
     setInternet(e.target.value);
@@ -67,7 +67,7 @@ const HomeComponent = () => {
                           id={`item_${i}`}
                           value={item.day}
                           onChange={(e) => handleValidity(e)}
-                          checked={isActive ? true : false}
+                          checked={isActive}
                         />
                         <label htmlFor={`item_${i}`} className="packData">
                           {item.day}
