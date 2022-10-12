@@ -207,7 +207,6 @@ const HomeComponent = () => {
                       <span className="longevity">1 Days</span>
                       <span className="voice">25 Min</span>
                       <span className="internet">0 MB</span>
-                      <span className="fourg">0 MB 4G Only </span>
                       <span className="bioscope">0 MB Bioscope </span>
                       <span className="sms">0 SMS</span>
                     </p>
