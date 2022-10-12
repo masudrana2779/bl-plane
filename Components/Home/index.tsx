@@ -52,11 +52,11 @@ const HomeComponent = () => {
           <div className="col-md-8 col-sm-12 col-12">
             <div className="planContent">
               <div className="row">
-                <div className="col-5">
+                <div className="col-4">
                   <h3>Validity</h3>
                   <p>{validity} Days</p>
                 </div>
-                <div className="col-7">
+                <div className="col-8">
                   <div className="packItemWrap">
                     {Validity.map((item: any, i: number) => (
                       <div className="packItem" key={i}>
@@ -76,13 +76,16 @@ const HomeComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="planContent">
+            <div className="planContent Internet">
               <div className="row">
-                <div className="col-5">
+                <div className="col-4">
                   <h3>Internet</h3>
+                  <p>
+                    <small>Regular</small>
+                  </p>
                   <p>{internet}</p>
                 </div>
-                <div className="col-7">
+                <div className="col-8">
                   <div className="packItemWrap">
                     {Internet.map((item: any, i: number) => (
                       <div className="packItem" key={i}>
@@ -102,13 +105,14 @@ const HomeComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="planContent">
+            <div className="planContent Minutes">
               <div className="row">
-                <div className="col-5">
+                <div className="col-4">
                   <h3>Minutes</h3>
-                  <p>{minutes}</p>
+                  <p>{minutes} Min</p>
+                  <p><small><small>Any local Number</small></small></p>
                 </div>
-                <div className="col-7">
+                <div className="col-8">
                   <div className="packItemWrap">
                     {Minutes.map((item: any, i: number) => (
                       <div className="packItem" key={i}>
@@ -128,13 +132,13 @@ const HomeComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="planContent">
+            <div className="planContent SMS">
               <div className="row">
-                <div className="col-5">
+                <div className="col-4">
                   <h3>SMS</h3>
-                  <p>{sms}</p>
+                  <p>{sms} SMS</p>
                 </div>
-                <div className="col-7">
+                <div className="col-8">
                   <div className="packItemWrap">
                     {SMS.map((item: any, i: number) => (
                       <div className="packItem" key={i}>
@@ -157,11 +161,11 @@ const HomeComponent = () => {
             {/* {data.map((dataItem: any, k: number) => (
               <div key={k} className="planContent">
                 <div className="row">
-                  <div className="col-5">
+                  <div className="col-4">
                     <h3>{dataItem.packTitle}</h3>
                     <p>3 Days</p>
                   </div>
-                  <div className="col-7">
+                  <div className="col-8">
                     <div className="packItemWrap">
                       {dataItem.pack.map((item: any, i: number) => (
                         <div className="packItem" key={i + k}>

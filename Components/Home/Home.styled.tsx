@@ -1,13 +1,19 @@
 import styled from "styled-components";
 
 export const BlPlanWrap = styled.div`
-  padding: 20px 0 200px;
+  padding: 0px 0 200px;
   position: relative;
 
   h4 {
     text-align: center;
     margin-bottom: 40px;
     font-size: 20px;
+    margin: 0 -1.5rem;
+    background-color: #ff8126;
+    color: #fff;
+    font-weight: 700;
+    padding: 25px 0;
+    margin-bottom: 30px;
   }
   .planContent {
     padding: 12px 0 6px 0;
@@ -16,16 +22,24 @@ export const BlPlanWrap = styled.div`
       border-bottom: 0;
     }
     h3 {
-      font-size: 16px;
-      line-height: 24px;
-      font-weight: 500;
+      font-size: 18px;
+      line-height: 20px;
+      font-weight: 900;
       color: #000;
+      margin-bottom: 0;
     }
     p {
       font-size: 16px;
       line-height: 24px;
-      font-weight: 400;
+      font-weight: 700;
       color: #ff8126;
+      margin-bottom: 0;
+      small {
+        margin-bottom: 5px;
+        display: block;
+        font-weight: 400;
+        color: #000;
+      }
     }
     .packItemWrap {
       /* display: grid;
@@ -42,15 +56,17 @@ export const BlPlanWrap = styled.div`
           &:checked + .packData {
             background-color: #ff8126;
             color: #fff;
+            font-weight: 700;
           }
         }
         .packData {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 48px;
-          height: 48px;
-          font-size: 10px;
+          width: 55px;
+          height: 55px;
+          font-size: 11px;
+          font-weight: 600;
           border-radius: 50%;
           border: 1px solid rgba(0, 0, 0, 0.12);
           margin: 0;
@@ -58,6 +74,48 @@ export const BlPlanWrap = styled.div`
           border-radius: 50%;
           cursor: pointer;
           transition: all 0.3s;
+        }
+      }
+    }
+    &.Internet {
+      p {
+        color: #86c933;
+      }
+      .packItemWrap {
+        .packItem {
+          input[type="radio"] {
+            &:checked + .packData {
+              background-color: #86c933;
+            }
+          }
+        }
+      }
+    }
+    &.Minutes {
+      p {
+        color: #4abac3;
+      }
+      .packItemWrap {
+        .packItem {
+          input[type="radio"] {
+            &:checked + .packData {
+              background-color: #4abac3;
+            }
+          }
+        }
+      }
+    }
+    &.SMS {
+      p {
+        color: #c34ab7;
+      }
+      .packItemWrap {
+        .packItem {
+          input[type="radio"] {
+            &:checked + .packData {
+              background-color: #c34ab7;
+            }
+          }
         }
       }
     }
