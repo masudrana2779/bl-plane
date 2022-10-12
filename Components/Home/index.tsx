@@ -181,19 +181,6 @@ const HomeComponent = () => {
                     <h3>{dataItem.packTitle}</h3>
                     <p>3 Days</p>
                   </div>
-                  <div className="col-8">
-                    <div className="packItemWrap">
-                      {dataItem.pack.map((item: any, i: number) => (
-                        <div className="packItem" key={i + k}>
-                          <input
-                            name={dataItem.packTitle}
-                            type="radio"
-                            id={`item_${k}${i}`}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             ))} */}
