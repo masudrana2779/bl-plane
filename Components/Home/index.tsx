@@ -174,11 +174,6 @@ const HomeComponent = () => {
                 </div>
               </div>
             </div>
-            {/* {data.map((dataItem: any, k: number) => (
-              <div key={k} className="planContent">
-                <div >
-                    
-            ))} */}
           </div>
           <div className="Total">
             <div className="right-sidebar-container">
