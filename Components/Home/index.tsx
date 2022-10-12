@@ -1,10 +1,22 @@
 import { useState } from "react";
 import { BlPlanWrap } from "./Home.styled";
 
-const Validity = ["0", "1", "3", "7"];
-const Internet = ["0", "100 MB", "205 MB", "500 MB"];
-const Minutes = ["0", "10", "25"];
-const SMS = ["0", "50", "100"];
+const Validity = ["1", "3", "7", "15", "30"];
+const Internet = [
+  "0",
+  "100MB",
+  "250 MB",
+  "500 MB",
+  "1 GB",
+  "1.5 GB",
+  "2.5 GB",
+  "3.5 GB",
+  "5 GB",
+  "8 GB",
+  "15 GB",
+];
+const Minutes = ["0", "10", "25", "50", "100", "150", "200", "300", "350"];
+const SMS = ["0", "25", "50", "100", "200", "300"];
 
 const data = [
   {
@@ -26,7 +38,7 @@ const data = [
 ];
 
 const HomeComponent = () => {
-  const [validity, setValidity] = useState(0);
+  const [validity, setValidity] = useState(1);
   const [internet, setInternet] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [sms, setSMS] = useState(0);
@@ -110,7 +122,11 @@ const HomeComponent = () => {
                 <div className="col-4">
                   <h3>Minutes</h3>
                   <p>{minutes} Min</p>
-                  <p><small><small>Any local Number</small></small></p>
+                  <p>
+                    <small>
+                      <small>Any local Number</small>
+                    </small>
+                  </p>
                 </div>
                 <div className="col-8">
                   <div className="packItemWrap">
