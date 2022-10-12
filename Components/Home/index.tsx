@@ -19,10 +19,6 @@ const Minutes = ["0", "10", "25", "50", "100", "150", "200", "300", "350"];
 const SMS = ["0", "25", "50", "100", "200", "300"];
 
 const data = [
-  {
-    packTitle: "Validity",
-    pack: ["0", "100 MB", "205 MB", "500 MB"],
-  },
 ];
 
 const HomeComponent = () => {
