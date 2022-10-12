@@ -176,9 +176,7 @@ const HomeComponent = () => {
             </div>
             {/* {data.map((dataItem: any, k: number) => (
               <div key={k} className="planContent">
-                <div className="row">
-                  <div className="col-4">
-                    <h3>
+                <div >
                     
             ))} */}
           </div>
