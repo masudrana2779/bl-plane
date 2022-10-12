@@ -132,7 +132,7 @@ const HomeComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="planContentSMS">
+            <div className="planContent SMS">
               <div className="row">
                 <div className="col-4">
                   <h3>SMS</h3>
