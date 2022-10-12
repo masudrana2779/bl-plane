@@ -31,10 +31,6 @@ const data = [
     packTitle: "Minutes",
     pack: ["0", "10", "25"],
   },
-  {
-    packTitle: "SMS",
-    pack: ["0", "50", "100"],
-  },
 ];
 
 const HomeComponent = () => {
