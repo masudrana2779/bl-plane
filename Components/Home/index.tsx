@@ -178,11 +178,8 @@ const HomeComponent = () => {
               <div key={k} className="planContent">
                 <div className="row">
                   <div className="col-4">
-                    <h3>{dataItem.packTitle}</h3>
-                    <p>3 Days</p>
-                  </div>
-                </div>
-              </div>
+                    <h3>
+                    
             ))} */}
           </div>
           <div className="Total">
