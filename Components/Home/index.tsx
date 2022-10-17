@@ -98,7 +98,6 @@ const HomeComponent = () => {
                           type="radio"
                           id={`item_${i}`}
                           value={item.day}
-                          checked={true}
                           onChange={(e) => handleValidity(e)}
                         />
                         <label htmlFor={`item_${i}`} className="packData">
