@@ -8,6 +8,38 @@ const Validity = [
   { day: "15", isActive: false },
   { day: "30", isActive: false },
 ];
+
+const dataPack = [
+  {
+    validity: 1,
+    mbData: 0,
+    mbName: "MB",
+    min: 0,
+    price: 0,
+  },
+  {
+    day: 1,
+    mbData: 100,
+    mbName: "MB",
+    min: 0,
+    price: 0,
+  },
+  {
+    day: 1,
+    mb: "100MB",
+    min: 0,
+    price: 10.1,
+    mrp: 15,
+  },
+  {
+    day: 1,
+    mb: "100MB",
+    min: 0,
+    price: 10.1,
+    mrp: 15,
+  },
+];
+
 const Internet = [
   "0",
   "100MB",
@@ -33,6 +65,7 @@ const HomeComponent = () => {
 
   const handleValidity = (e: any) => {
     setValidity(e.target.value);
+    setisActive(validity === 1 ? true : false);
   };
   const handleInternet = (e: any) => {
     setInternet(e.target.value);
@@ -65,8 +98,8 @@ const HomeComponent = () => {
                           type="radio"
                           id={`item_${i}`}
                           value={item.day}
+                          checked={true}
                           onChange={(e) => handleValidity(e)}
-                          checked={isActive}
                         />
                         <label htmlFor={`item_${i}`} className="packData">
                           {item.day}
