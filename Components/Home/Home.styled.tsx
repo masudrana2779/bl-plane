@@ -59,6 +59,14 @@ export const BlPlanWrap = styled.div`
             font-weight: 700;
           }
         }
+        input[disabled] {
+          & + .packData {
+            pointer-events: none;
+            background: #e3e3e3;
+            border: none;
+            color: #999;
+          }
+        }
         .packData {
           display: flex;
           align-items: center;
