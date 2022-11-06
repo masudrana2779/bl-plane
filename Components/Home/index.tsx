@@ -1,7 +1,29 @@
 import { useState } from "react";
 import { BlPlanWrap } from "./Home.styled";
 
-const Validity = [
+
+type packDetail = {
+  value: string,
+  id: number,
+  title: string,
+  regularPrice: number,
+  discountPrice: number,
+  discount: number
+};
+
+type daySelectType = {
+  value: string,
+  id: number,
+  title: string,
+};
+
+type configDataType = {
+  title: string,
+  value: packDetail[] | daySelectType[],
+  label: string
+}
+
+const Validity: daySelectType[] = [
   {
     value: "1 day",
     id: 1,
@@ -29,13 +51,14 @@ const Validity = [
   },
 ];
 
-const Internet = [
+const Internet: packDetail[] = [
   {
     value: "100MB",
     id: 10,
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 10
   },
   {
     value: "3GB",
@@ -43,6 +66,7 @@ const Internet = [
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 8
   },
   {
     value: "7GB",
@@ -50,6 +74,7 @@ const Internet = [
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 7
   },
   {
     value: "15GB",
@@ -57,6 +82,7 @@ const Internet = [
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 16
   },
   {
     value: "30GB",
@@ -64,15 +90,18 @@ const Internet = [
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 10
   },
 ];
-const Minutes = [
+const Minutes: packDetail[] = [
   {
     value: "30 min",
     id: 400,
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 10
+
   },
   {
     value: "50 min",
@@ -80,6 +109,7 @@ const Minutes = [
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 20
   },
   {
     value: "340 min",
@@ -87,15 +117,17 @@ const Minutes = [
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 19
   },
 ];
-const SMS = [
+const SMS: packDetail[] = [
   {
     value: "50",
     id: 6000,
     title: "",
-    regularPrice: 20,
-    discountPrice: 18,
+    regularPrice: 10,
+    discountPrice: 5,
+    discount: 23
   },
   {
     value: "100",
@@ -103,6 +135,7 @@ const SMS = [
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 10
   },
   {
     value: "150",
@@ -110,10 +143,11 @@ const SMS = [
     title: "",
     regularPrice: 20,
     discountPrice: 18,
+    discount: 17
   },
 ];
 
-const configData = [
+const configData: configDataType[] = [
   {
     title: "Validity",
     value: Validity,
@@ -136,9 +170,54 @@ const configData = [
   },
 ];
 
-const packageConfig = [
+interface IObjectKeys {
+  [key: string]: any | packDetail[];
+}
+
+interface packageConfigType extends IObjectKeys{
+  id: number;
+  day: string;
+  internet: packDetail[];
+  sms: packDetail[];
+  minutes: packDetail[]
+}
+
+const packageConfig: packageConfigType[] = [
   {
     id: 1,
+    day: "3 days",
+    internet: [
+      {
+        value: "30GB",
+        id: 50,
+        title: "",
+        regularPrice: 20,
+        discountPrice: 18,
+        discount: 10
+      }
+    ],
+    sms: [
+      {
+        value: "50",
+        id: 6000,
+        title: "",
+        regularPrice: 20,
+        discountPrice: 18,
+        discount: 50
+      },
+    ],
+    minutes: [
+      {
+        value: "340 min",
+        id: 600,
+        title: "",
+        regularPrice: 20,
+        discountPrice: 18,
+        discount: 32
+      },
+    ],
+  },{
+    id: 2,
     day: "7 days",
     internet: [
       {
@@ -147,6 +226,7 @@ const packageConfig = [
         title: "",
         regularPrice: 20,
         discountPrice: 18,
+        discount: 14
       },
       {
         value: "15GB",
@@ -154,6 +234,7 @@ const packageConfig = [
         title: "",
         regularPrice: 20,
         discountPrice: 18,
+        discount: 17
       },
     ],
     sms: [
@@ -163,6 +244,7 @@ const packageConfig = [
         title: "",
         regularPrice: 20,
         discountPrice: 18,
+        discount: 34
       },
     ],
     minutes: [
@@ -172,6 +254,7 @@ const packageConfig = [
         title: "",
         regularPrice: 20,
         discountPrice: 18,
+        discount: 11
       },
       {
         value: "50 min",
@@ -179,32 +262,57 @@ const packageConfig = [
         title: "",
         regularPrice: 20,
         discountPrice: 18,
+        discount: 17
       },
     ],
   },
 ];
 
+
 const HomeComponent = () => {
-  const [selectedSms, setSelectedSms] = useState<string>("0");
-  const [selectedValidity, setSelectedValidity] = useState<string>("0");
-  const [selectedMinutes, setSelectedMinutes] = useState<string>("0");
-  const [selectedInternet, setSelectedInternet] = useState<string>("0");
-  const [daySelected, setDaySelected] = useState(undefined);
+  const [selectedSms, setSelectedSms] = useState<string>("50");
+  const [selectedValidity, setSelectedValidity] = useState<string>('3 days');
+  const [selectedMinutes, setSelectedMinutes] = useState<string>("340 min");
+  const [selectedInternet, setSelectedInternet] = useState<string>("30GB");
+  const [daySelected, setDaySelected] = useState<packageConfigType>(packageConfig[0]);
+  const [smsPrice, setSmsPrice] = useState<packDetail|null>(null);
+  const [interNetPrice, setInternetPrice] = useState<packDetail|null>(null);
+  const [minutesPrice, setMinutesPrice] = useState<packDetail|null>(null);
+  const [totalAmount, setTotalAmount] = useState<number>(40);
+  const [totalDiscount, setTotalDiscount] = useState<number>(15);
 
   const handleValidity = async (e: any, label: string) => {
     if (label === "Validity") {
       setSelectedValidity(e.target.value);
-      // @ts-ignore
-      setDaySelected(packageConfig.find((item) => item.day === e.target.value));
+      const packageConfigObj: packageConfigType | undefined = packageConfig.find((item) => item.day === e.target.value);
+      packageConfigObj && setDaySelected(packageConfigObj);
+      packageConfigObj && setDaySelected(packageConfigObj);
+      packageConfigObj && setSelectedInternet(packageConfigObj.internet[0].value);
+      packageConfigObj && setSelectedSms(packageConfigObj.sms[0].value);
+      packageConfigObj && setSelectedMinutes(packageConfigObj.minutes[0].value);
+      packageConfigObj && setTotalAmount(packageConfigObj.minutes[0].discountPrice + packageConfigObj.sms[0].discountPrice + packageConfigObj.internet[0].discountPrice)
     } else if (label === "SMS") {
       setSelectedSms(e.target.value);
+      const k: packDetail | undefined = SMS.find((item) => item.value === e.target.value)
+      k && setSmsPrice(k);
+      console.log(k);
+      k && setTotalAmount(prevState => prevState + k.discountPrice)
+      console.log(k, e.target.value)
     } else if (label === "Minutes") {
       setSelectedMinutes(e.target.value);
+      const y: packDetail | undefined =Minutes.find((item) => item.value === e.target.value)
+      y && setMinutesPrice(y);
+      y && setTotalAmount(prevState => prevState + y.discountPrice)
+
     } else if (label === "Internet") {
       setSelectedInternet(e.target.value);
+      const x: packDetail | undefined = Internet.find((item) => item.value === e.target.value);
+      x && setInternetPrice(x);
+      x && setTotalAmount(prevState => prevState + x.discountPrice)
     }
   };
 
+  // @ts-ignore
   return (
     <BlPlanWrap className="blPlanWrap">
       <div className="container" style={{ background: "#fff" }}>
@@ -230,19 +338,20 @@ const HomeComponent = () => {
                     <div className="packItemWrap">
                       {item.value.map((b: any, i: number) => (
                         <div className="packItem" key={i}>
-                          {daySelected ? (
+                          {daySelected && item.title !== "Validity" ? (
                             <input
                               name={item.title}
                               type="radio"
                               id={b.id}
+                              checked={selectedInternet===b.value || selectedSms===b.value|| selectedMinutes===b.value}
                               disabled={
-                                !!(
+                                !(
                                   daySelected &&
                                   item.title !== "Validity" &&
                                   daySelected[item.title.toLowerCase()].length >
                                     0 &&
                                   daySelected[item.title.toLowerCase()].some(
-                                    (x) => x.id === b.id
+                                    (x: any) => x.id === b.id
                                   )
                                 )
                               }
@@ -254,6 +363,7 @@ const HomeComponent = () => {
                               name={item.title}
                               type="radio"
                               id={b.id}
+                              checked={b.value === daySelected.day}
                               value={b.value}
                               onChange={(e) => handleValidity(e, item.title)}
                             />
@@ -268,99 +378,13 @@ const HomeComponent = () => {
                 </div>
               </div>
             ))}
-            {/*<div className="planContent Internet">*/}
-            {/*  <div className="row">*/}
-            {/*    <div className="col-4">*/}
-            {/*      <h3>Internet</h3>*/}
-            {/*      <p>*/}
-            {/*        <small>Regular</small>*/}
-            {/*      </p>*/}
-            {/*      <p>{internet}</p>*/}
-            {/*    </div>*/}
-            {/*    <div className="col-8">*/}
-            {/*      <div className="packItemWrap">*/}
-            {/*        {Internet.map((item: any, i: number) => (*/}
-            {/*          <div className="packItem" key={i}>*/}
-            {/*            <input*/}
-            {/*              name="Internet"*/}
-            {/*              type="radio"*/}
-            {/*              id={`Internet_${i}`}*/}
-            {/*              value={item}*/}
-            {/*              onChange={(e) => handleInternet(e)}*/}
-            {/*            />*/}
-            {/*            <label htmlFor={`Internet_${i}`} className="packData">*/}
-            {/*              {item}*/}
-            {/*            </label>*/}
-            {/*          </div>*/}
-            {/*        ))}*/}
-            {/*      </div>*/}
-            {/*    </div>*/}
-            {/*  </div>*/}
-            {/*</div>*/}
-            {/*<div className="planContent Minutes">*/}
-            {/*  <div className="row">*/}
-            {/*    <div className="col-4">*/}
-            {/*      <h3>Minutes</h3>*/}
-            {/*      <p>{minutes} Min</p>*/}
-            {/*      <p>*/}
-            {/*        <small>*/}
-            {/*          <small>Any local Number</small>*/}
-            {/*        </small>*/}
-            {/*      </p>*/}
-            {/*    </div>*/}
-            {/*    <div className="col-8">*/}
-            {/*      <div className="packItemWrap">*/}
-            {/*        {Minutes.map((item: any, i: number) => (*/}
-            {/*          <div className="packItem" key={i}>*/}
-            {/*            <input*/}
-            {/*              name="Minutes"*/}
-            {/*              type="radio"*/}
-            {/*              id={`Minutes_${i}`}*/}
-            {/*              value={item}*/}
-            {/*              onChange={(e) => handleMinutes(e)}*/}
-            {/*            />*/}
-            {/*            <label htmlFor={`Minutes_${i}`} className="packData">*/}
-            {/*              {item}*/}
-            {/*            </label>*/}
-            {/*          </div>*/}
-            {/*        ))}*/}
-            {/*      </div>*/}
-            {/*    </div>*/}
-            {/*  </div>*/}
-            {/*</div>*/}
-            {/*<div className="planContent SMS">*/}
-            {/*  <div className="row">*/}
-            {/*    <div className="col-4">*/}
-            {/*      <h3>SMS</h3>*/}
-            {/*      <p>{sms} SMS</p>*/}
-            {/*    </div>*/}
-            {/*    <div className="col-8">*/}
-            {/*      <div className="packItemWrap">*/}
-            {/*        {SMS.map((item: any, i: number) => (*/}
-            {/*          <div className="packItem" key={i}>*/}
-            {/*            <input*/}
-            {/*              name="sms"*/}
-            {/*              type="radio"*/}
-            {/*              id={`sms_${i}`}*/}
-            {/*              value={item}*/}
-            {/*              onChange={(e) => handleSms(e)}*/}
-            {/*            />*/}
-            {/*            <label htmlFor={`sms_${i}`} className="packData">*/}
-            {/*              {item}*/}
-            {/*            </label>*/}
-            {/*          </div>*/}
-            {/*        ))}*/}
-            {/*      </div>*/}
-            {/*    </div>*/}
-            {/*  </div>*/}
-            {/*</div>*/}
           </div>
           <div className="Total">
             <div className="right-sidebar-container">
               <div className="right-sidebar">
                 <div>
                   <h2 className="myob_bonus_num">
-                    <span id="discount-amount">10</span>
+                    <span id="discount-amount">{Math.floor(Math.random() * 50)}</span>
                     <span className="myob_percent">%</span>
                   </h2>
                   <h6 className="myob_bonus_text">Savings</h6>
@@ -371,7 +395,7 @@ const HomeComponent = () => {
                   <div className="myob_sidebar">
                     <p className="flxpln-sml-terms">Total Price</p>
                     <p>
-                      ৳ <span id="bundle-price">18.00</span>
+                      ৳ <span id="bundle-price">{totalAmount}</span>
                     </p>
                     <p className=" purchase_title">
                       <span className="longevity">{selectedValidity}</span>
